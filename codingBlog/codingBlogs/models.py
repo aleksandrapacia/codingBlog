@@ -9,3 +9,17 @@ class Topic(models.Model):
     def __str__(self):
         """Return a string representation of the model."""
         return self.text
+    
+class Entry(models.Model):
+    """Info about topic"""
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE) #if delete, delete all 
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'entires'
+    
+    def __str__(self):
+        """Returns a string representation of a model as a string"""
+        return f"{self.text[:50]}..."
+        
